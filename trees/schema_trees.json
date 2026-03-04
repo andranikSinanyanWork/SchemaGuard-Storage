@@ -24,6 +24,12 @@
       "source_file": "com/example/schemaguard/domain/model/entity/SchemaValidationReport.kt",
       "children": [
         {
+          "class": "newnew: ReportSummary",
+          "qualified_name": "com.example.schemaguard.domain.model.entity.ReportSummary",
+          "kind": "DATA_CLASS",
+          "source_file": "com/example/schemaguard/domain/model/entity/ReportSummary.kt"
+        },
+        {
           "class": "overallStatus: ValidationStatus",
           "qualified_name": "com.example.schemaguard.domain.model.entity.ValidationStatus",
           "kind": "ENUM",
