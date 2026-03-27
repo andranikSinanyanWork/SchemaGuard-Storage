@@ -1,1 +1,598 @@
-{"start_points":[{"schema":{"$schema":"https://plugins.jetbrains.com/plugin/25654-jsonscheme-generator","additionalProperties":false,"title":"OfferShowLogicApiModel","type":"object","properties":{"disabled_touchpoints":{"description":"","type":"array","items":{"type":"string"}},"disabled_subtouchpoints":{"description":"","type":"array","items":{"type":"string"}},"touchpoints":{"description":"","type":"array","items":{"additionalProperties":false,"type":"object","properties":{"names":{"description":"","type":"array","items":{"type":"string"}},"name":{"description":"","type":"string"},"info":{"description":"","type":"array","items":{"additionalProperties":false,"type":"object","properties":{"thank_you_popup":{"description":"","type":"string"},"launch_logic":{"description":"","type":"array","items":{"additionalProperties":false,"type":"object","properties":{"should_replace_with_ad":{"description":"","type":"boolean"},"should_replace_with_reward_credit":{"description":"","type":"boolean"},"install_day_min":{"description":"","type":"integer"},"editor_done_min":{"description":"","type":"integer"},"app_session_end":{"description":"","type":"integer"},"editor_done_max":{"description":"","type":"integer"},"session_limit_start":{"description":"","type":"integer"},"had_subscription_package":{"description":"","type":"array","items":{"type":"string"}},"user_had_subscription":{"description":"","type":"boolean"},"should_replace_with_reward_interstitial":{"description":"","type":"boolean"},"key_session_start":{"description":"","type":"integer"},"install_day_max":{"description":"","type":"integer"},"is_ai_credit":{"description":"","type":"boolean"},"offer_screen_touchpoint":{"description":"","type":"string"},"repeat_key_session":{"description":"","type":"integer"},"storage_min_percent":{"description":"","type":"integer"},"is_store_available":{"description":"","type":"boolean"},"key_session_end":{"description":"","type":"integer"},"repeat_session":{"description":"","type":"integer"},"offer_screen_touch_point":{"description":"","type":"string"},"restricted_packages":{"description":"","type":"array","items":{"additionalProperties":false,"type":"object","properties":{"package_id":{"description":"","type":"string"},"offer_id":{"description":"","type":"string"}}}},"current_tier_types":{"description":"","type":"array","items":{"type":"string"}},"app_session_start":{"description":"","type":"integer"},"daily_session_limit":{"description":"","type":"integer"},"should_replace_with_reward":{"description":"","type":"boolean"},"skip_offer_during_cooldown":{"description":"","type":"boolean"},"session_limit_end":{"description":"","type":"integer"},"storage_max_percent":{"description":"","type":"integer"}}}},"offer_variant":{"description":"","type":"string"},"screens":{"description":"","type":"array","items":{"type":"string"}},"offer_screen_touchpoint":{"description":"","type":"string"},"session_key":{"description":"","type":"string"},"is_one_time_offer":{"description":"","type":"boolean"},"offer_screen_touch_point":{"description":"","type":"string"}}}}}}}}},"is_list":false,"class":"OfferShowLogicApiModel","settings_key":"offer_screen_show_logic_sf"}],"all_files":[{"file":"/Users/andranik/Documents/picsart/picsart-android/business-impl/src/main/java/com/picsart/subscription/manageableoffers/SubscriptionManageableOffersUseCaseImpl.kt","role":"Implements offer show logic: checks limits, sessions, tiers, ads, cooldown, and subscription state to decide if an offer screen can open.","type":"UseCaseImpl","class":"SubscriptionManageableOffersUseCaseImpl"},{"file":"/Users/andranik/Documents/picsart/picsart-android/business/src/main/java/com/picsart/subscription/manageableoffers/SubscriptionManageableOffersUseCase.kt","role":"Interface defining methods to resolve which offer screen to show and to increment session counts.","type":"UseCase","class":"SubscriptionManageableOffersUseCase"},{"file":"/Users/andranik/Documents/picsart/picsart-android/repository/src/main/java/com/picsart/subscription/SubscriptionManageableOffersRepo.kt","role":"Interface for fetching offer screen config by touch point and managing session/daily counters.","type":"Repository","class":"SubscriptionManageableOffersRepo"},{"file":"/Users/andranik/Documents/picsart/picsart-android/repository-impl/src/main/java/com/picsart/subscription/manageableoffers/SubscriptionManageableOffersRepoImpl.kt","role":"Reads OfferShowLogicApiModel from RemoteSettings, delegates to ManageableOffersMapper, and tracks session counts in preferences.","type":"RepositoryImpl","class":"SubscriptionManageableOffersRepoImpl"},{"file":"/Users/andranik/Documents/picsart/picsart-android/repository-impl/src/main/java/com/picsart/subscription/manageableoffers/ManageableOffersMapper.kt","role":"Maps OfferShowLogicApiModel API model into OfferScreenLaunchEntity domain model with launch logic params.","type":"Mapper","class":"ManageableOffersMapper"},{"file":"/Users/andranik/Documents/picsart/picsart-android/repository-impl/src/main/java/com/picsart/subscription/manageableoffers/LaunchLogicApiModel.kt","role":"@FeatureStart API model deserialized from remote settings key offer_screen_show_logic_sf, containing touch points and their offer configurations.","type":"ApiModel","class":"OfferShowLogicApiModel"},{"file":"/Users/andranik/Documents/picsart/picsart-android/payment/api/src/main/java/com/picsart/payment/api/subscription/data/SubscriptionRepo.kt","role":"Interface for subscription billing, purchase history, package details, and user valid subscription state.","type":"Repository","class":"SubscriptionRepo"},{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/api/src/main/java/com/picsart/subscription/SubscriptionFullscreenCloseCallbackWrapper.kt","role":"Interface tracking whether a fullscreen offer is currently showing to prevent duplicates.","type":"DataClass","class":"SubscriptionFullscreenCloseCallbackWrapper"},{"file":"/Users/andranik/Documents/picsart/picsart-android/repository/src/main/java/com/picsart/subscription/AdParamsRepo.kt","role":"Interface for checking if interstitial or rewarded ads can be shown for a given touch point.","type":"Repository","class":"AdParamsRepo"},{"file":"/Users/andranik/Documents/picsart/picsart-android/repository-impl/src/main/java/com/picsart/subscription/AdParamsRepoImpl.kt","role":"Delegates ad availability checks to InterstitialService and RewardedAdService singletons.","type":"RepositoryImpl","class":"AdParamsRepoImpl"},{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/api/src/main/java/com/picsart/subscription/onedaypass/OneDayPassConfigRepo.kt","role":"Interface for one-day pass config data, cooldown period checks, and timer management.","type":"Repository","class":"OneDayPassConfigRepo"},{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/impl/src/main/java/com/picsart/subscription/onedaypass/visualclue/data/OneDayPassConfigRepoImpl.kt","role":"Reads one-day pass config from RemoteSettings, manages cooldown timestamps in shared preferences.","type":"RepositoryImpl","class":"OneDayPassConfigRepoImpl"},{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/impl/src/main/java/com/picsart/subscription/onedaypass/visualclue/data/OneDayPassConfigMapper.kt","role":"Maps OneDayPassConfigApiModel to OneDayPassConfigEntity domain model.","type":"Mapper","class":"OneDayPassConfigMapper"},{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/api/src/main/java/com/picsart/subscription/onedaypass/entity/OneDayPassConfigEntity.kt","role":"Entity holding cooldown period and visual clue text for one-day pass feature.","type":"DataClass","class":"OneDayPassConfigEntity"},{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/api/src/main/java/com/picsart/subscription/onedaypass/entity/CooldownPeriodEntity.kt","role":"Entity holding cooldown period length and without-trial days count.","type":"DataClass","class":"CooldownPeriodEntity"},{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/api/src/main/java/com/picsart/subscription/SubscriptionAccessRepo.kt","role":"Interface for awaiting ongoing PA guard subscription access requests.","type":"Repository","class":"SubscriptionAccessRepo"},{"file":"/Users/andranik/Documents/picsart/picsart-android/repository-impl/src/main/java/com/picsart/subscription/SubscriptionAccessRepoImpl.kt","role":"Implements PA subscription guard request flow with mutex-protected API calls and timeout-based awaiting.","type":"RepositoryImpl","class":"SubscriptionAccessRepoImpl"},{"file":"/Users/andranik/Documents/picsart/picsart-android/payment/api/src/main/java/com/picsart/payment/api/subscription/SubscriptionInfoUseCase.kt","role":"Interface for checking subscription status, purchase history, and promotional offer eligibility.","type":"UseCase","class":"SubscriptionInfoUseCase"},{"file":"/Users/andranik/Documents/picsart/picsart-android/entity/src/main/java/com/picsart/subscription/manageableoffers/OfferScreenParam.kt","role":"Domain entities for offer screen state, launch parameters, launch logic params, and restricted packages.","type":"DataClass","class":"OfferScreenParam"},{"file":"/Users/andranik/Documents/picsart/picsart-android/entity/src/main/java/com/picsart/subscription/manageableoffers/ManageableFullScreenPromotionParam.kt","role":"Input parameter model carrying touch point, force-show flag, and pro tool indicators for offer resolution.","type":"DataClass","class":"ManageableFullScreenPromotionParam"},{"file":"/Users/andranik/Documents/picsart/picsart-android/entity/src/main/java/com/picsart/subscription/PaymentServiceType.kt","role":"Sealed interface defining payment service types: Google, Fake, and Web.","type":"DataClass","class":"PaymentServiceType"},{"file":"/Users/andranik/Documents/picsart/picsart-android/connector/src/main/java/com/picsart/premium/SubscriptionModule.kt","role":"Main subscription DI module providing SubscriptionManageableOffersRepo, SubscriptionManageableOffersUseCase, AdParamsRepo, and ManageableOffersMapper bindings.","type":"DiModule","class":"subscriptionModule"},{"file":"/Users/andranik/Documents/picsart/picsart-android/connector/src/main/java/com/picsart/premium/SubscriptionAccessModule.kt","role":"Provides SubscriptionAccessRepo binding and aggregates all subscription sub-modules.","type":"DiModule","class":"subscriptionAccessModule"},{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/impl/src/main/java/com/picsart/subscription/onedaypass/visualclue/di/OneDayPassModule.kt","role":"Provides OneDayPassConfigRepo and OneDayPassConfigMapper bindings.","type":"DiModule","class":"oneDayPassModule"},{"file":"/Users/andranik/Documents/picsart/picsart-android/payment/impl/src/main/java/com/picsart/payment/impl/subscription/di/SubscriptionPaymentCommonModule.kt","role":"Provides SubscriptionRepo, SubscriptionInfoUseCase, and SubscriptionCacheService bindings.","type":"DiModule","class":"subscriptionPaymentCommonModule"}],"feature_name":"show_logic","end_points":[{"file":"/Users/andranik/Documents/picsart/picsart-android/business-impl/src/main/java/com/picsart/subscription/manageableoffers/SubscriptionManageableOffersUseCaseImpl.kt","class":"SubscriptionManageableOffersUseCaseImpl"}],"tree":{"file":"/Users/andranik/Documents/picsart/picsart-android/business-impl/src/main/java/com/picsart/subscription/manageableoffers/SubscriptionManageableOffersUseCaseImpl.kt","role":"Implements offer show logic: checks limits, sessions, tiers, ads, cooldown, and subscription state to decide if an offer screen can open.","children":[{"file":"/Users/andranik/Documents/picsart/picsart-android/business/src/main/java/com/picsart/subscription/manageableoffers/SubscriptionManageableOffersUseCase.kt","role":"Interface defining methods to resolve which offer screen to show and to increment session counts.","children":[],"type":"UseCase","class":"SubscriptionManageableOffersUseCase"},{"file":"/Users/andranik/Documents/picsart/picsart-android/repository/src/main/java/com/picsart/subscription/SubscriptionManageableOffersRepo.kt","role":"Interface for fetching offer screen config by touch point and managing session/daily counters.","children":[{"file":"/Users/andranik/Documents/picsart/picsart-android/repository-impl/src/main/java/com/picsart/subscription/manageableoffers/SubscriptionManageableOffersRepoImpl.kt","role":"Reads OfferShowLogicApiModel from RemoteSettings, delegates to ManageableOffersMapper, and tracks session counts in preferences.","children":[{"file":"/Users/andranik/Documents/picsart/picsart-android/repository-impl/src/main/java/com/picsart/subscription/manageableoffers/ManageableOffersMapper.kt","role":"Maps OfferShowLogicApiModel API model into OfferScreenLaunchEntity domain model with launch logic params.","children":[{"file":"/Users/andranik/Documents/picsart/picsart-android/repository-impl/src/main/java/com/picsart/subscription/manageableoffers/LaunchLogicApiModel.kt","role":"@FeatureStart API model deserialized from remote settings key offer_screen_show_logic_sf, containing touch points and their offer configurations.","children":[],"type":"ApiModel","class":"OfferShowLogicApiModel"}],"type":"Mapper","class":"ManageableOffersMapper"}],"type":"RepositoryImpl","class":"SubscriptionManageableOffersRepoImpl"}],"type":"Repository","class":"SubscriptionManageableOffersRepo"},{"file":"/Users/andranik/Documents/picsart/picsart-android/payment/api/src/main/java/com/picsart/payment/api/subscription/data/SubscriptionRepo.kt","role":"Interface for subscription billing, purchase history, package details, and user valid subscription state.","children":[],"type":"Repository","class":"SubscriptionRepo"},{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/api/src/main/java/com/picsart/subscription/SubscriptionFullscreenCloseCallbackWrapper.kt","role":"Interface tracking whether a fullscreen offer is currently showing to prevent duplicates.","children":[],"type":"DataClass","class":"SubscriptionFullscreenCloseCallbackWrapper"},{"file":"/Users/andranik/Documents/picsart/picsart-android/repository/src/main/java/com/picsart/subscription/AdParamsRepo.kt","role":"Interface for checking if interstitial or rewarded ads can be shown for a given touch point.","children":[{"file":"/Users/andranik/Documents/picsart/picsart-android/repository-impl/src/main/java/com/picsart/subscription/AdParamsRepoImpl.kt","role":"Delegates ad availability checks to InterstitialService and RewardedAdService singletons.","children":[],"type":"RepositoryImpl","class":"AdParamsRepoImpl"}],"type":"Repository","class":"AdParamsRepo"},{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/api/src/main/java/com/picsart/subscription/onedaypass/OneDayPassConfigRepo.kt","role":"Interface for one-day pass config data, cooldown period checks, and timer management.","children":[{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/impl/src/main/java/com/picsart/subscription/onedaypass/visualclue/data/OneDayPassConfigRepoImpl.kt","role":"Reads one-day pass config from RemoteSettings, manages cooldown timestamps in shared preferences.","children":[{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/impl/src/main/java/com/picsart/subscription/onedaypass/visualclue/data/OneDayPassConfigMapper.kt","role":"Maps OneDayPassConfigApiModel to OneDayPassConfigEntity domain model.","children":[{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/api/src/main/java/com/picsart/subscription/onedaypass/entity/OneDayPassConfigEntity.kt","role":"Entity holding cooldown period and visual clue text for one-day pass feature.","children":[{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/api/src/main/java/com/picsart/subscription/onedaypass/entity/CooldownPeriodEntity.kt","role":"Entity holding cooldown period length and without-trial days count.","children":[],"type":"DataClass","class":"CooldownPeriodEntity"}],"type":"DataClass","class":"OneDayPassConfigEntity"}],"type":"Mapper","class":"OneDayPassConfigMapper"}],"type":"RepositoryImpl","class":"OneDayPassConfigRepoImpl"}],"type":"Repository","class":"OneDayPassConfigRepo"},{"file":"/Users/andranik/Documents/picsart/picsart-android/monetization/api/src/main/java/com/picsart/subscription/SubscriptionAccessRepo.kt","role":"Interface for awaiting ongoing PA guard subscription access requests.","children":[{"file":"/Users/andranik/Documents/picsart/picsart-android/repository-impl/src/main/java/com/picsart/subscription/SubscriptionAccessRepoImpl.kt","role":"Implements PA subscription guard request flow with mutex-protected API calls and timeout-based awaiting.","children":[],"type":"RepositoryImpl","class":"SubscriptionAccessRepoImpl"}],"type":"Repository","class":"SubscriptionAccessRepo"},{"file":"/Users/andranik/Documents/picsart/picsart-android/payment/api/src/main/java/com/picsart/payment/api/subscription/SubscriptionInfoUseCase.kt","role":"Interface for checking subscription status, purchase history, and promotional offer eligibility.","children":[],"type":"UseCase","class":"SubscriptionInfoUseCase"},{"file":"/Users/andranik/Documents/picsart/picsart-android/entity/src/main/java/com/picsart/subscription/manageableoffers/OfferScreenParam.kt","role":"Domain entities for offer screen state, launch parameters, launch logic params, and restricted packages.","children":[],"type":"DataClass","class":"OfferScreenParam"},{"file":"/Users/andranik/Documents/picsart/picsart-android/entity/src/main/java/com/picsart/subscription/manageableoffers/ManageableFullScreenPromotionParam.kt","role":"Input parameter model carrying touch point, force-show flag, and pro tool indicators for offer resolution.","children":[],"type":"DataClass","class":"ManageableFullScreenPromotionParam"},{"file":"/Users/andranik/Documents/picsart/picsart-android/entity/src/main/java/com/picsart/subscription/PaymentServiceType.kt","role":"Sealed interface defining payment service types: Google, Fake, and Web.","children":[],"type":"DataClass","class":"PaymentServiceType"}],"type":"UseCaseImpl","class":"SubscriptionManageableOffersUseCaseImpl"}}
+{
+  "start_points": [
+    {
+      "schema": {
+        "type": "object",
+        "properties": {
+          "disabled_touchpoints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "disabled_subtouchpoints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": ""
+          },
+          "touchpoints": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": ""
+                },
+                "info": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "screens": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": ""
+                      },
+                      "session_key": {
+                        "type": "string",
+                        "description": ""
+                      },
+                      "thank_you_popup": {
+                        "type": "string",
+                        "description": ""
+                      },
+                      "offer_screen_touch_point": {
+                        "type": "string",
+                        "description": ""
+                      },
+                      "offer_screen_touchpoint": {
+                        "type": "string",
+                        "description": ""
+                      },
+                      "launch_logic": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "app_session_start": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "app_session_end": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "editor_done_min": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "editor_done_max": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "key_session_start": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "key_session_end": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "session_limit_start": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "session_limit_end": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "daily_session_limit": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "repeat_session": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "repeat_key_session": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "install_day_min": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "install_day_max": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "offer_screen_touch_point": {
+                              "type": "string",
+                              "description": ""
+                            },
+                            "offer_screen_touchpoint": {
+                              "type": "string",
+                              "description": ""
+                            },
+                            "had_subscription_package": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": ""
+                            },
+                            "user_had_subscription": {
+                              "type": "boolean",
+                              "description": ""
+                            },
+                            "should_replace_with_reward": {
+                              "type": "boolean",
+                              "description": ""
+                            },
+                            "should_replace_with_reward_credit": {
+                              "type": "boolean",
+                              "description": ""
+                            },
+                            "should_replace_with_ad": {
+                              "type": "boolean",
+                              "description": ""
+                            },
+                            "should_replace_with_reward_interstitial": {
+                              "type": "boolean",
+                              "description": ""
+                            },
+                            "storage_min_percent": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "storage_max_percent": {
+                              "type": "integer",
+                              "description": ""
+                            },
+                            "current_tier_types": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": ""
+                            },
+                            "is_ai_credit": {
+                              "type": "boolean",
+                              "description": ""
+                            },
+                            "skip_offer_during_cooldown": {
+                              "type": "boolean",
+                              "description": ""
+                            },
+                            "is_store_available": {
+                              "type": "boolean",
+                              "description": ""
+                            },
+                            "restricted_packages": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "package_id": {
+                                    "type": "string",
+                                    "description": ""
+                                  },
+                                  "offer_id": {
+                                    "type": "string",
+                                    "description": ""
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "description": ""
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "description": ""
+                      },
+                      "is_one_time_offer": {
+                        "type": "boolean",
+                        "description": ""
+                      },
+                      "offer_variant": {
+                        "type": "string",
+                        "description": ""
+                      }
+                    },
+                    "additionalProperties": false
+                  },
+                  "description": ""
+                },
+                "names": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": ""
+                }
+              },
+              "additionalProperties": false
+            },
+            "description": ""
+          }
+        },
+        "additionalProperties": false
+      },
+      "is_list": false,
+      "class": "OfferShowLogicApiModel",
+      "settings_key": "offer_screen_show_logic_sf"
+    }
+  ],
+  "all_files": [
+    {
+      "file": "business-impl/src/main/java/com/picsart/subscription/manageableoffers/SubscriptionManageableOffersUseCaseImpl.kt",
+      "role": "Determines whether a manageable offer screen should be shown based on launch logic, limits, subscription state, and ad configuration.",
+      "type": "UseCaseImpl",
+      "class": "SubscriptionManageableOffersUseCaseImpl"
+    },
+    {
+      "file": "business/src/main/java/com/picsart/subscription/manageableoffers/SubscriptionManageableOffersUseCase.kt",
+      "role": "Interface defining getOfferName and incrementCounts operations for manageable offer screen resolution.",
+      "type": "UseCase",
+      "class": "SubscriptionManageableOffersUseCase"
+    },
+    {
+      "file": "repository/src/main/java/com/picsart/subscription/SubscriptionManageableOffersRepo.kt",
+      "role": "Interface defining offer screen resolution by touch point, session counting, and app session tracking.",
+      "type": "Repository",
+      "class": "SubscriptionManageableOffersRepo"
+    },
+    {
+      "file": "repository-impl/src/main/java/com/picsart/subscription/manageableoffers/SubscriptionManageableOffersRepoImpl.kt",
+      "role": "Fetches OfferShowLogicApiModel from remote settings, delegates mapping to ManageableOffersMapper, and manages session/daily counters.",
+      "type": "RepositoryImpl",
+      "class": "SubscriptionManageableOffersRepoImpl"
+    },
+    {
+      "file": "repository-impl/src/main/java/com/picsart/subscription/manageableoffers/ManageableOffersMapper.kt",
+      "role": "Maps OfferShowLogicApiModel API response into OfferScreenLaunchEntity domain model with launch logic params.",
+      "type": "Mapper",
+      "class": "ManageableOffersMapper"
+    },
+    {
+      "file": "repository-impl/src/main/java/com/picsart/subscription/manageableoffers/LaunchLogicApiModel.kt",
+      "role": "@FeatureStart API model deserialized from remote settings key offer_screen_show_logic_sf containing touchpoint offer configurations.",
+      "type": "ApiModel",
+      "class": "OfferShowLogicApiModel"
+    },
+    {
+      "file": "entity/src/main/java/com/picsart/subscription/manageableoffers/OfferScreenParam.kt",
+      "role": "Domain entity file containing OfferScreenParam, OfferScreenLaunchEntity, OfferScreenParamEntity, OfferScreenState, OfferLaunchLogicParams, and RestrictedPackagesEntity.",
+      "type": "DataClass",
+      "class": "OfferScreenParam"
+    },
+    {
+      "file": "entity/src/main/java/com/picsart/subscription/manageableoffers/ManageableFullScreenPromotionParam.kt",
+      "role": "Input parameter data class carrying touchPoint, forceShow flag, and tool usage info for offer resolution.",
+      "type": "DataClass",
+      "class": "ManageableFullScreenPromotionParam"
+    },
+    {
+      "file": "entity/src/main/java/com/picsart/subscription/PaymentServiceType.kt",
+      "role": "Sealed interface defining payment service types (Google, Fake, Web) used in Play Store availability checks.",
+      "type": "Entity",
+      "class": "PaymentServiceType"
+    },
+    {
+      "file": "user-projects/api/src/main/java/com/picsart/userProjects/api/storageUsageInfo/repository/StorageUsageRepository.kt",
+      "role": "Provides cached storage usage percentage used in storage-based offer launch logic range checks.",
+      "type": "Repository",
+      "class": "StorageUsageRepository"
+    },
+    {
+      "file": "payment/api/src/main/java/com/picsart/payment/api/subscription/data/SubscriptionRepo.kt",
+      "role": "Provides user subscription state, purchase history, active payment types, and package details.",
+      "type": "Repository",
+      "class": "SubscriptionRepo"
+    },
+    {
+      "file": "monetization/api/src/main/java/com/picsart/subscription/SubscriptionFullscreenCloseCallbackWrapper.kt",
+      "role": "Tracks whether a fullscreen offer is currently showing to prevent concurrent offer displays.",
+      "type": "Repository",
+      "class": "SubscriptionFullscreenCloseCallbackWrapper"
+    },
+    {
+      "file": "repository/src/main/java/com/picsart/subscription/AdParamsRepo.kt",
+      "role": "Checks interstitial and rewarded ad availability for ad-replacement offer logic flows.",
+      "type": "Repository",
+      "class": "AdParamsRepo"
+    },
+    {
+      "file": "monetization/api/src/main/java/com/picsart/subscription/onedaypass/OneDayPassConfigRepo.kt",
+      "role": "Provides one-day pass cooldown period status used to skip offers during cooldown.",
+      "type": "Repository",
+      "class": "OneDayPassConfigRepo"
+    },
+    {
+      "file": "payment/api/src/main/java/com/picsart/payment/api/inapp/credits/CreditsTransactionUseCase.kt",
+      "role": "Determines if the user is in a credit-based flow to conditionally filter offers flagged as credit-only.",
+      "type": "UseCase",
+      "class": "CreditsTransactionUseCase"
+    },
+    {
+      "file": "monetization/api/src/main/java/com/picsart/subscription/SubscriptionAccessRepo.kt",
+      "role": "Awaits ongoing PA guard subscription access requests before resolving offer eligibility.",
+      "type": "Repository",
+      "class": "SubscriptionAccessRepo"
+    },
+    {
+      "file": "payment/api/src/main/java/com/picsart/payment/api/subscription/SubscriptionInfoUseCase.kt",
+      "role": "Checks user eligibility for promotional offers used in restricted packages validation.",
+      "type": "UseCase",
+      "class": "SubscriptionInfoUseCase"
+    },
+    {
+      "file": "entity/src/main/java/com/picsart/subscription/PurchaseHistoryInfo.kt",
+      "role": "Data class representing purchase history entries used in had-subscription eligibility checks.",
+      "type": "DataClass",
+      "class": "PurchaseHistoryInfo"
+    },
+    {
+      "file": "monetization/api/src/main/java/com/picsart/subscription/onedaypass/entity/OneDayPassConfigEntity.kt",
+      "role": "Entity carrying cooldown period and visual clue text for one-day pass configuration.",
+      "type": "DataClass",
+      "class": "OneDayPassConfigEntity"
+    },
+    {
+      "file": "monetization/api/src/main/java/com/picsart/subscription/onedaypass/entity/CooldownPeriodEntity.kt",
+      "role": "Entity defining cooldown length and without-trial days count for one-day pass period calculations.",
+      "type": "DataClass",
+      "class": "CooldownPeriodEntity"
+    },
+    {
+      "file": "connector/src/main/java/com/picsart/premium/SubscriptionModule.kt",
+      "role": "Main DI module binding SubscriptionManageableOffersUseCase, SubscriptionManageableOffersRepo, ManageableOffersMapper, and AdParamsRepo.",
+      "type": "DiModule",
+      "class": "SubscriptionModule"
+    },
+    {
+      "file": "payment/impl/src/main/java/com/picsart/payment/impl/subscription/di/SubscriptionPaymentCommonModule.kt",
+      "role": "DI module binding SubscriptionRepo and SubscriptionInfoUseCase implementations.",
+      "type": "DiModule",
+      "class": "SubscriptionPaymentCommonModule"
+    },
+    {
+      "file": "connector/src/main/java/com/picsart/premium/SubscriptionAccessModule.kt",
+      "role": "DI module binding SubscriptionAccessRepo implementation.",
+      "type": "DiModule",
+      "class": "SubscriptionAccessModule"
+    },
+    {
+      "file": "monetization/impl/src/main/java/com/picsart/subscription/onedaypass/visualclue/di/OneDayPassModule.kt",
+      "role": "DI module binding OneDayPassConfigRepo implementation.",
+      "type": "DiModule",
+      "class": "OneDayPassModule"
+    },
+    {
+      "file": "repository-impl/src/main/java/com/picsart/subscription/AdParamsRepoImpl.kt",
+      "role": "Delegates interstitial and rewarded ad availability checks to InterstitialService and RewardedAdService.",
+      "type": "RepositoryImpl",
+      "class": "AdParamsRepoImpl"
+    },
+    {
+      "file": "monetization/impl/src/main/java/com/picsart/subscription/onedaypass/visualclue/data/OneDayPassConfigRepoImpl.kt",
+      "role": "Reads one-day pass config from RemoteSettings, delegates mapping to OneDayPassConfigMapper, checks cooldown via SubscriptionRepo.",
+      "type": "RepositoryImpl",
+      "class": "OneDayPassConfigRepoImpl"
+    },
+    {
+      "file": "monetization/impl/src/main/java/com/picsart/subscription/onedaypass/visualclue/data/OneDayPassConfigMapper.kt",
+      "role": "Maps OneDayPassConfigApiModel to OneDayPassConfigEntity domain model.",
+      "type": "Mapper",
+      "class": "OneDayPassConfigMapper"
+    },
+    {
+      "file": "monetization/impl/src/main/java/com/picsart/subscription/onedaypass/visualclue/data/OneDayPassConfigApiModel.kt",
+      "role": "API model for one-day pass configuration deserialized from remote settings.",
+      "type": "ApiModel",
+      "class": "OneDayPassConfigApiModel"
+    },
+    {
+      "file": "repository-impl/src/main/java/com/picsart/subscription/SubscriptionAccessRepoImpl.kt",
+      "role": "Implements PA guard subscription access via SubscriptionApiService, manages concurrent request deduplication with Mutex.",
+      "type": "RepositoryImpl",
+      "class": "SubscriptionAccessRepoImpl"
+    },
+    {
+      "file": "repository-impl/src/main/java/com/picsart/subscription/SubscriptionApiService.kt",
+      "role": "Retrofit API service providing getSettingsWithTag(), provideSubscriptionAccess(), and requestPAUserSubscriptionGranted() endpoints.",
+      "type": "ApiService",
+      "class": "SubscriptionApiService"
+    },
+    {
+      "file": "presenter/src/main/java/com/picsart/subscription/viewmodel/SubscriptionFullScreenNavigationViewModel.kt",
+      "role": "The only direct consumer of SubscriptionManageableOffersUseCase — calls getOfferName() with ManageableFullScreenPromotionParam and posts OfferScreenParamEntity to LiveData.",
+      "type": "ViewModel",
+      "class": "SubscriptionFullScreenNavigationViewModel"
+    },
+    {
+      "file": "picsart/src/main/java/com/wrapper/SubscriptionFullScreenNavigatorImpl.kt",
+      "role": "Observes SubscriptionFullScreenNavigationViewModel LiveData to receive resolved OfferScreenParamEntity and drives actual offer screen navigation.",
+      "type": "Navigator",
+      "class": "SubscriptionFullScreenNavigatorImpl"
+    }
+  ],
+  "feature_name": "show_logic",
+  "end_point": {
+    "file": "business-impl/src/main/java/com/picsart/subscription/manageableoffers/SubscriptionManageableOffersUseCaseImpl.kt",
+    "class": "SubscriptionManageableOffersUseCaseImpl"
+  },
+  "tree": {
+    "file": "picsart/src/main/java/com/wrapper/SubscriptionFullScreenNavigatorImpl.kt",
+    "role": "Observes SubscriptionFullScreenNavigationViewModel LiveData to receive resolved OfferScreenParamEntity and drives actual offer screen navigation.",
+    "children": [
+      {
+        "file": "presenter/src/main/java/com/picsart/subscription/viewmodel/SubscriptionFullScreenNavigationViewModel.kt",
+        "role": "The only direct consumer of SubscriptionManageableOffersUseCase — calls getOfferName() with ManageableFullScreenPromotionParam and posts OfferScreenParamEntity to LiveData.",
+        "children": [
+          {
+            "file": "business-impl/src/main/java/com/picsart/subscription/manageableoffers/SubscriptionManageableOffersUseCaseImpl.kt",
+            "role": "Determines whether a manageable offer screen should be shown based on launch logic, limits, subscription state, and ad configuration.",
+            "children": [
+              {
+                "file": "repository/src/main/java/com/picsart/subscription/SubscriptionManageableOffersRepo.kt",
+                "role": "Interface defining offer screen resolution by touch point, session counting, and app session tracking.",
+                "children": [
+                  {
+                    "file": "repository-impl/src/main/java/com/picsart/subscription/manageableoffers/SubscriptionManageableOffersRepoImpl.kt",
+                    "role": "Fetches OfferShowLogicApiModel from remote settings, delegates mapping to ManageableOffersMapper, and manages session/daily counters via preferences.",
+                    "children": [
+                      {
+                        "file": "repository-impl/src/main/java/com/picsart/subscription/manageableoffers/ManageableOffersMapper.kt",
+                        "role": "Maps OfferShowLogicApiModel API response into OfferScreenLaunchEntity domain model, converting touch point details and launch logic params.",
+                        "children": [
+                          {
+                            "file": "repository-impl/src/main/java/com/picsart/subscription/manageableoffers/LaunchLogicApiModel.kt",
+                            "role": "@FeatureStart API model deserialized from remote settings key offer_screen_show_logic_sf, containing disabled touchpoints and per-touchpoint offer configurations.",
+                            "children": [],
+                            "type": "ApiModel",
+                            "class": "OfferShowLogicApiModel"
+                          }
+                        ],
+                        "type": "Mapper",
+                        "class": "ManageableOffersMapper"
+                      },
+                      {
+                        "file": "repository-impl/src/main/java/com/picsart/subscription/SubscriptionApiService.kt",
+                        "role": "Retrofit API service providing getSettingsWithTag() for tag-based remote settings fetch used by SubscriptionManageableOffersRepoImpl.",
+                        "children": [],
+                        "type": "ApiService",
+                        "class": "SubscriptionApiService"
+                      }
+                    ],
+                    "type": "RepositoryImpl",
+                    "class": "SubscriptionManageableOffersRepoImpl"
+                  }
+                ],
+                "type": "Repository",
+                "class": "SubscriptionManageableOffersRepo"
+              },
+              {
+                "file": "user-projects/api/src/main/java/com/picsart/userProjects/api/storageUsageInfo/repository/StorageUsageRepository.kt",
+                "role": "Provides cached storage usage percentage used to evaluate storage-based offer launch logic range checks.",
+                "children": [],
+                "type": "Repository",
+                "class": "StorageUsageRepository"
+              },
+              {
+                "file": "payment/api/src/main/java/com/picsart/payment/api/subscription/data/SubscriptionRepo.kt",
+                "role": "Provides user subscription state, purchase history, active payment types, and package details used in multiple offer eligibility checks.",
+                "children": [],
+                "type": "Repository",
+                "class": "SubscriptionRepo"
+              },
+              {
+                "file": "monetization/api/src/main/java/com/picsart/subscription/SubscriptionFullscreenCloseCallbackWrapper.kt",
+                "role": "Tracks whether a fullscreen offer is currently showing to prevent concurrent offer displays.",
+                "children": [],
+                "type": "Repository",
+                "class": "SubscriptionFullscreenCloseCallbackWrapper"
+              },
+              {
+                "file": "repository/src/main/java/com/picsart/subscription/AdParamsRepo.kt",
+                "role": "Checks interstitial and rewarded ad availability for ad-replacement offer logic flows.",
+                "children": [
+                  {
+                    "file": "repository-impl/src/main/java/com/picsart/subscription/AdParamsRepoImpl.kt",
+                    "role": "Delegates interstitial and rewarded ad availability checks to InterstitialService and RewardedAdService.",
+                    "children": [],
+                    "type": "RepositoryImpl",
+                    "class": "AdParamsRepoImpl"
+                  }
+                ],
+                "type": "Repository",
+                "class": "AdParamsRepo"
+              },
+              {
+                "file": "monetization/api/src/main/java/com/picsart/subscription/onedaypass/OneDayPassConfigRepo.kt",
+                "role": "Provides one-day pass cooldown period status used to skip offers during cooldown.",
+                "children": [
+                  {
+                    "file": "monetization/impl/src/main/java/com/picsart/subscription/onedaypass/visualclue/data/OneDayPassConfigRepoImpl.kt",
+                    "role": "Reads one-day pass config from RemoteSettings, delegates mapping to OneDayPassConfigMapper, checks cooldown via SubscriptionRepo.",
+                    "children": [
+                      {
+                        "file": "monetization/impl/src/main/java/com/picsart/subscription/onedaypass/visualclue/data/OneDayPassConfigMapper.kt",
+                        "role": "Maps OneDayPassConfigApiModel to OneDayPassConfigEntity domain model.",
+                        "children": [
+                          {
+                            "file": "monetization/impl/src/main/java/com/picsart/subscription/onedaypass/visualclue/data/OneDayPassConfigApiModel.kt",
+                            "role": "API model for one-day pass configuration deserialized from remote settings.",
+                            "children": [],
+                            "type": "ApiModel",
+                            "class": "OneDayPassConfigApiModel"
+                          }
+                        ],
+                        "type": "Mapper",
+                        "class": "OneDayPassConfigMapper"
+                      }
+                    ],
+                    "type": "RepositoryImpl",
+                    "class": "OneDayPassConfigRepoImpl"
+                  }
+                ],
+                "type": "Repository",
+                "class": "OneDayPassConfigRepo"
+              },
+              {
+                "file": "payment/api/src/main/java/com/picsart/payment/api/inapp/credits/CreditsTransactionUseCase.kt",
+                "role": "Determines if the user is in a credit-based flow to conditionally filter offers flagged as credit-only.",
+                "children": [],
+                "type": "UseCase",
+                "class": "CreditsTransactionUseCase"
+              },
+              {
+                "file": "monetization/api/src/main/java/com/picsart/subscription/SubscriptionAccessRepo.kt",
+                "role": "Awaits ongoing PA guard subscription access requests before resolving offer eligibility.",
+                "children": [
+                  {
+                    "file": "repository-impl/src/main/java/com/picsart/subscription/SubscriptionAccessRepoImpl.kt",
+                    "role": "Implements PA guard subscription access via SubscriptionApiService, manages concurrent request deduplication with Mutex.",
+                    "children": [
+                      {
+                        "file": "repository-impl/src/main/java/com/picsart/subscription/SubscriptionApiService.kt",
+                        "role": "Retrofit API service providing provideSubscriptionAccess() and requestPAUserSubscriptionGranted() endpoints.",
+                        "children": [],
+                        "type": "ApiService",
+                        "class": "SubscriptionApiService"
+                      }
+                    ],
+                    "type": "RepositoryImpl",
+                    "class": "SubscriptionAccessRepoImpl"
+                  }
+                ],
+                "type": "Repository",
+                "class": "SubscriptionAccessRepo"
+              },
+              {
+                "file": "payment/api/src/main/java/com/picsart/payment/api/subscription/SubscriptionInfoUseCase.kt",
+                "role": "Checks user eligibility for promotional offers used in restricted packages validation.",
+                "children": [],
+                "type": "UseCase",
+                "class": "SubscriptionInfoUseCase"
+              }
+            ],
+            "type": "UseCaseImpl",
+            "class": "SubscriptionManageableOffersUseCaseImpl"
+          }
+        ],
+        "type": "ViewModel",
+        "class": "SubscriptionFullScreenNavigationViewModel"
+      }
+    ],
+    "type": "Navigator",
+    "class": "SubscriptionFullScreenNavigatorImpl"
+  }
+}
